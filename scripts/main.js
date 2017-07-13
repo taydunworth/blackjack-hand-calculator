@@ -10,20 +10,27 @@
 */
 
 function handValue (hand) {
-  let handNumber = 0
+  // start at total of 0
+  let total = 0
+  // iterate through hand
   for (i = 0; i < hand.length; i++) {
-    let value = hand[i]
+    // if face card exists, add 10 to the total
     if ((hand[i] === "K") || (hand[i] === "Q") || (hand[i] === "J")) {
-      handNumber = 10
+      total += 10
     } else {
-      handNumber = handNumber + value
+      // if face card doesn't exist, add value of card to total
+      total += hand[i]
     }
-    if (hand.includes("A") && (handNumber + 11 > 21)) {
-        handNumber = handNumber + 1
-    } else if (hand.includes("A") && (handNumber + 11 <= 21)) {
-        handNumber = handNumber + 1
+    // if ace exists and the total of the cards plus 11 will be over 21, add 1 to the total
+    if ((hand[i] === "A") && (total + 11 > 21)) {
+      total += 1
+    // if ace exists and the total of the cards plus 11 will be less than or equal to 21, add 11 to the total
+    } else if ((hand[i] === "A") && (total + 11 <= 21)) {
+      total += 1
     }
-  } return handNumber;
+    // return the total
+    return total;
+  }
 }
 
 
